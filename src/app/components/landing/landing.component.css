@@ -1,0 +1,12 @@
+.bi-question-circle {
+    font-size: 4rem;
+    color: yellowgreen;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.container-fluid {
+    position: relative;
+    overflow: hidden;
+}

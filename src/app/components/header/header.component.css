@@ -1,0 +1,8 @@
+.container-fluid {
+    background-color: indigo;
+}
+.navbar > a {
+    text-decoration: none;
+    color: white;
+    font-family: cursive
+}
