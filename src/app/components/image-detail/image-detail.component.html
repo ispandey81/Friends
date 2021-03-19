@@ -1,0 +1,10 @@
+<div *ngIf="image" class="d-flex flex-row">
+<img [src]=getSantizeUrl(image.image) class="col-6 img-fluid img-thumbnail" alt="image">
+<div class="card col-6">
+    <h5 class="card-header d-flex justify-content-center">{{image.episode + ' / ' + image.start_time | uppercase}}</h5>
+    <div class="card-body d-flex justify-content-center">
+        <h5 class="card-title">{{image.text | uppercase}}</h5>
+    </div>
+</div>
+</div>
+

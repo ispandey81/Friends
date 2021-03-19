@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -13,17 +14,17 @@ export class HeaderComponent implements OnInit {
   term = new FormControl();
   result: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.term.valueChanges.
       pipe(
         debounceTime(2000),
         distinctUntilChanged(),
-        switchMap(val => this.http.get('http://localhost:8080/api/image/text/' + val))
-      ).subscribe(res => {
-        console.log(res);
-        this.result = res;
+        // switchMap(val => this.http.get('http://localhost:8080/api/image/text/' + val))
+      ).subscribe(val => {
+        console.log(val);
+        this.router.navigate([`api/image/text/${val}`])
       });
   }
 
