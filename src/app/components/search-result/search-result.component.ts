@@ -15,6 +15,7 @@ import { Image } from '../../shared/image';
 export class SearchResultComponent implements OnInit {
 
   images!: Image[];
+  nothingFound: boolean = false;
 
   constructor(private readonly http: HttpClient, private readonly activatedRoute: ActivatedRoute,
      private readonly sanitizer: DomSanitizer, private readonly router: Router) { }
@@ -23,8 +24,13 @@ export class SearchResultComponent implements OnInit {
     this.activatedRoute.params
     .pipe(switchMap((params: Params) => this.http.get(`${API_URL}text/${params['search']}`)))
     .subscribe(img => {
-      this.images = img as Image[];
-      console.log(this.images);     
+      const result = img as Image[];
+      if (result.length > 0 ) {
+        this.nothingFound = false;
+        this.images = result;  
+      } else {
+        this.nothingFound = true;
+      }
     });
   }
 
@@ -33,7 +39,7 @@ export class SearchResultComponent implements OnInit {
 }
 
   onClick(id: number) {
-    this.router.navigate([`api/image/id/${id}`])
+    this.router.navigate([`api/image/id/${id}`], {state: {data: {navigatedFrom: 'searchResults'}}})
   }
 
 }

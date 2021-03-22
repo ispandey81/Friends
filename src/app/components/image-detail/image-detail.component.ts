@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
+import {Location} from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { API_URL } from 'src/app/shared/api-url';
 import { Image } from 'src/app/shared/image';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-image-detail',
@@ -14,21 +16,31 @@ import { Image } from 'src/app/shared/image';
 export class ImageDetailComponent implements OnInit {
 
   image!: Image;
+  showBackButton!: boolean;
 
   constructor(private readonly activatedRoute: ActivatedRoute, private readonly http: HttpClient, 
-    private readonly sanitizer: DomSanitizer) { }
+    private readonly sanitizer: DomSanitizer, private readonly location: Location) { }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap
+      .pipe(map(() => window.history.state.data))
+      .subscribe(data => {
+        this.showBackButton = data.navigatedFrom === 'random' ? false: true;
+      });
+      
     this.activatedRoute.params
     .pipe(switchMap((params: Params) => this.http.get(`${API_URL}id/${params['imageId']}`)))
     .subscribe(img => {
       this.image = img as Image;
-      console.log(this.image);     
     });
   }
 
   public getSantizeUrl(url : string) {
     return this.sanitizer.bypassSecurityTrustUrl(`data:image/png;base64,${url}`);
 }
+
+  onClick(){
+    this.location.back();   
+  }
 
 }

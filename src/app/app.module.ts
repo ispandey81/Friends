@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ImageDetailComponent } from './components/image-detail/image-detail.component';
+import { MinCharacterLengthComponent } from './components/min-character-length/min-character-length.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ImageDetailComponent } from './components/image-detail/image-detail.com
     AboutComponent,
     LandingComponent,
     SearchResultComponent,
-    ImageDetailComponent
+    ImageDetailComponent,
+    MinCharacterLengthComponent
   ],
   imports: [
     BrowserModule,
