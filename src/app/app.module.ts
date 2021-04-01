@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ImageDetailComponent } from './components/image-detail/image-detail.component';
 import { MinCharacterLengthComponent } from './components/min-character-length/min-character-length.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MinCharacterLengthComponent } from './components/min-character-length/m
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,9 +23,9 @@ export class ImageDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap
-      .pipe(map(() => window.history.state.data))
+      .pipe(map(() => window.history.state ? window.history.state.data : null))
       .subscribe(data => {
-        this.showBackButton = data.navigatedFrom === 'random' ? false: true;
+        this.showBackButton = data && data.navigatedFrom === 'random' ? false: true;
       });
       
     this.activatedRoute.params

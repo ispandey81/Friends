@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { API_URL } from 'src/app/shared/api-url';
 
 @Component({
@@ -20,16 +20,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.term.valueChanges.
-      pipe(
-        debounceTime(2000),
-        distinctUntilChanged()
-      ).subscribe(val => {
-        if (val.length < 2) {
-          this.router.navigate([`min-length`]);         
-        } else {
-          this.router.navigate([`api/image/text/${val}`]);
-        }
-      });
+    pipe(
+      debounceTime(2000),
+      distinctUntilChanged()
+    ).subscribe(val => {
+      if (val.length < 2) {
+        this.router.navigate([`min-length`]);         
+      } else {
+        this.router.navigate([`api/image/text/${val}`]);
+      }
+    });
   }
 
   onClick() {
