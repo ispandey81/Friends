@@ -3,12 +3,12 @@
         <a href="/" class="col-md-3 col-sm-3 col-xs d-flex justify-content-start">
             <h1>MITRA</h1>
         </a>
-        <div class="input-group input-group-lg col-md-6 col-sm-6 col-xs d-flex justify-content-center">
+        <div class="col-md-6 col-sm-6 col-xs d-flex justify-content-center">
             <input type="text" placeholder="Search by quote (e.g. how you doin, italian guy, medical marvel)"
-                class="form-control">
+                class="form-control" [formControl]="term">
         </div>
         <div class="col-md-3 col-sm-3 col-xs d-flex justify-content-end flex-end">
-            <button type="button" class="btn-lg btn-success">RANDOM</button>
+            <button type="button" class="btn btn-success" (click) = "onClick()">RANDOM</button>
         </div>
     </div>
 </div>

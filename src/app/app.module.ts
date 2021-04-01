@@ -6,17 +6,30 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './components/about/about.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ImageDetailComponent } from './components/image-detail/image-detail.component';
+import { MinCharacterLengthComponent } from './components/min-character-length/min-character-length.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AboutComponent,
-    LandingComponent
+    LandingComponent,
+    SearchResultComponent,
+    ImageDetailComponent,
+    MinCharacterLengthComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

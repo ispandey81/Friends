@@ -1,0 +1,28 @@
+<div *ngIf="!nothingFound;else elseBlock">
+    <ng-container *ngIf="errorMsg && errorMsg.length > 0">
+        <h3 class="text-center mt-5">{{errorMsg}}!!!</h3>
+    </ng-container>
+    <div *ngIf="images && !errorMsg">
+        <ng-container *ngIf="images.length === 1;else multipleImages">
+            <h3 class="text-center mt-5">{{images.length}} image found!</h3>
+        </ng-container>
+        <ng-template #multipleImages>
+            <h3 class="text-center mt-5">{{images.length}} images found!</h3>
+        </ng-template>
+        <ng-container
+            *ngFor="let image of images | paginate: {itemsPerPage: 10, currentPage: currentPage, totalItems: count}"
+            class="d-flex flex-row">
+            <img [src]=getSanitizeUrl(image.image) class="col-md-6 col-sm col-xs img-fluid img-thumbnail" alt="image"
+                (click)="onClick(image.id)">
+        </ng-container>
+        <pagination-controls class="text-center" previousLabel="Previous" nextLabel="Next"
+            screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+            screenReaderCurrentLabel="You're on page" (pageChange)="currentPage = $event" responsive=true
+            directionLinks=true autoHide=true>
+        </pagination-controls>
+    </div>
+
+</div>
+<ng-template #elseBlock>
+    <h3 class="text-center mt-5">Nothing found. Please try again!!!</h3>
+</ng-template>

@@ -1,5 +1,5 @@
 .container-fluid {
-    background-color: indigo;
+    background-color: currentColor;
 }
 .navbar > a {
     text-decoration: none;
