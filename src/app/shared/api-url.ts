@@ -1,1 +1,1 @@
-export const API_URL = 'http://localhost:8080/api/image/';
+export const API_URL = 'https://friends-services.herokuapp.com/api/image/';
