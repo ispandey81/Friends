@@ -7,6 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { API_URL } from 'src/app/shared/api-url';
 import { Image } from 'src/app/shared/image';
 import { Observable } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-image-detail',
@@ -19,9 +20,17 @@ export class ImageDetailComponent implements OnInit {
   showBackButton!: boolean;
 
   constructor(private readonly activatedRoute: ActivatedRoute, private readonly http: HttpClient, 
-    private readonly sanitizer: DomSanitizer, private readonly location: Location) { }
+    private readonly sanitizer: DomSanitizer, private readonly location: Location, private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinnerService.show(undefined,
+      {
+        type: 'square-jelly-box',
+        size: 'large',
+        bdColor: 'rgba(0,17,17, .8)',
+        color: 'white',
+        fullScreen: true
+      });
     this.activatedRoute.paramMap
       .pipe(map(() => window.history.state ? window.history.state.data : null))
       .subscribe(data => {
@@ -32,6 +41,7 @@ export class ImageDetailComponent implements OnInit {
     .pipe(switchMap((params: Params) => this.http.get(`${API_URL}id/${params['imageId']}`)))
     .subscribe(img => {
       this.image = img as Image;
+      this.spinnerService.hide();
     });
   }
 

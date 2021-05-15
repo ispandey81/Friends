@@ -3,6 +3,7 @@ import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { forkJoin, Observable, of } from 'rxjs';
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/shared/api-response';
@@ -23,9 +24,17 @@ export class SearchResultComponent implements OnInit {
   errorMsg!: string;
 
   constructor(private readonly http: HttpClient, private readonly activatedRoute: ActivatedRoute,
-    private readonly sanitizer: DomSanitizer, private readonly router: Router) { }
+    private readonly sanitizer: DomSanitizer, private readonly router: Router, private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.spinnerService.show(undefined,
+      {
+        type: 'square-jelly-box',
+        size: 'large',
+        bdColor: 'rgba(0,17,17, .8)',
+        color: 'white',
+        fullScreen: true
+      });
     this.activatedRoute.params
       .subscribe(param => {
         this.http.get(`${API_URL}text/${param.search}`)
@@ -57,6 +66,7 @@ export class SearchResultComponent implements OnInit {
             } else {
               this.nothingFound = true;
             }
+            this.spinnerService.hide();
           })
       })
   }

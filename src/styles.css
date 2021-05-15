@@ -11,3 +11,7 @@
 a {
     font-family: 'Gloria Hallelujah', cursive;
 }
+.loading{
+    color: white;
+    padding-top: 50px;
+  }

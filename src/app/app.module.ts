@@ -12,6 +12,7 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { ImageDetailComponent } from './components/image-detail/image-detail.component';
 import { MinCharacterLengthComponent } from './components/min-character-length/min-character-length.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
