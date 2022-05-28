@@ -1,7 +1,7 @@
 .container-fluid {
     background-color: currentColor;
 }
-.navbar > a {
+.navbar > .justify-content-start > a:first-child {
     text-decoration: none;
     color: white;
     font-family: 'Gloria Hallelujah', cursive;
