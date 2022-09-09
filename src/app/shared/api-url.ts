@@ -1,1 +1,1 @@
-export const API_URL = 'https://friends-services.herokuapp.com/api/image/';
+export const API_URL = 'https://friends-services.onrender.com/api/image/';
